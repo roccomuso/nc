@@ -4,7 +4,7 @@ Porting Netcat in Node.js. CLI util. :computer:
 
 **Under active development... stay away!**
 
-To embed it on your Node.js app use the [netcat](https://github.com/roccomuso/netcat) package instead. This is meant to be used as a standalone tool.
+To embed it in your Node.js app use the [netcat](https://github.com/roccomuso/netcat) package instead. This is meant to be used as a standalone tool.
 
 ## What you can do
 
@@ -50,9 +50,9 @@ Available options:
 -z                   zero-I/O mode [used for scanning]
 ```
 
-#### Listen for inbound
-    
-    $ nc -l -p port [- options] [hostname] [port]
+#### Server: Listen for inbound
+
+    $ nc -l -p 2389
 
 #### Client mode
 
@@ -62,7 +62,7 @@ Available options:
 
 | Server side         | Client side                        |
 |---------------------|------------------------------------|
-| `nc -l 2389 > test` | `cat testfile | nc localhost 2389` |
+| `nc -l 2389 > test` | <code>cat testfile &#124; nc localhost 2389</code> |
 
 #### Timeout support
 
@@ -86,8 +86,9 @@ In a normal scenario, if the nc client receives an EOF character then it termina
 
 By default all the sockets that nc utility creates are TCP protocols but this utility also works with UDP protocol. To enable UDP protocol the -u flag is used.
 
-    $ nc -u -l 2389 # server
-    $ nc -u localhost 2389 # client
+| Server side         | Client side                        |
+|---------------------|------------------------------------|
+| `nc -u -l 2389` | `nc -u localhost 2389` |
 
 
 ## DEBUG
