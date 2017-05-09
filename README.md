@@ -76,7 +76,7 @@ Connection above would be terminated after 10 seconds.
 
 In this way the server remains up even if the client got disconnected.
 
-##### Configure netcat client to stau up after EOF
+##### Configure netcat client to stay up after EOF
 
 In a normal scenario, if the nc client receives an EOF character then it terminates immediately but this behavior can also be controlled if the -q flag is used. This flag expects a number which depicts number of seconds to wait before client terminates (after receiving EOF).
 
