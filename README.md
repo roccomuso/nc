@@ -76,13 +76,13 @@ Connection above would be terminated after 10 seconds.
 
 In this way the server remains up even if the client got disconnected.
 
-##### Netcat execute
+#### Netcat execute
 
 A far more exciting thing to do is to get a quick shell going on a remote machine by using the `-l` or `listen` option and the `-e` or `execute` option. When a connection is made, Netcat executes the program of your choice and connects the `stdin` and `stdout` of the program to the network connection.
 
     $ nc -l -p 23 -e /bin/bash
 
-##### Retrieve a website Homepage
+#### Retrieve a website Homepage
 
 Let's create a HTTP request file `get.txt` that contains the following line and then a blank
 line:
@@ -98,13 +98,13 @@ To use Netcat to retrieve the home page of a web site use:
 
 You will see Netcat make a connection to port 80, send the text contained in the file `get.txt`, and then output the web server's response to `stdout`.
 
-##### Configure netcat client to stay up after EOF
+#### Configure netcat client to stay up after EOF
 
 In a normal scenario, if the nc client receives an EOF character then it terminates immediately but this behavior can also be controlled if the -q flag is used. This flag expects a number which depicts number of seconds to wait before client terminates (after receiving EOF).
 
     $ nc -q 5 localhost 2389
 
-##### UDP Protocol
+#### UDP Protocol
 
 By default all the sockets that nc utility creates are TCP protocols but this utility also works with UDP protocol. To enable UDP protocol the -u flag is used.
 
