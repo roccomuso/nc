@@ -16,6 +16,12 @@ To embed it in your Node.js app use the [netcat](https://github.com/roccomuso/ne
 - [ ] Port scanning
 - [ ] Banner grabbing
 
+| OS    |  Supported |
+|-------|--------------------|
+| Linux | :white_check_mark: |
+| Mac OS | :white_check_mark: |
+| Windows | :white_check_mark: |
+
 ## Install
 
     $ npm install -g nc
@@ -45,7 +51,7 @@ Available options:
 -T tos               set Type Of Service
 -t                   answer TELNET negotiation
 -u                   UDP mode
--v                   verbose [use twice to be more verbose]
+-v                   verbose
 -w secs              timeout for connects and final net reads (client-side)
 -z                   zero-I/O mode [used for scanning]
 ```
