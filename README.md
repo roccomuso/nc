@@ -10,11 +10,11 @@ To embed it in your Node.js app use the [netcat](https://github.com/roccomuso/ne
 
 - [ ] Backdoor (Reverse Shell)
 - [ ] Honeypot
-- [ ] Port forwarding
 - [ ] File transfer
+- [ ] Port forwarding
+- [ ] Proxy
 - [ ] Web Server
 - [ ] Port scanning
-- [ ] Banner grabbing
 
 | OS    |  Supported |
 |-------|--------------------|
@@ -118,6 +118,13 @@ By default all the sockets that nc utility creates are TCP protocols but this ut
 |---------------------|------------------------------------|
 | `nc -u -l 2389` | `nc -u localhost 2389` |
 
+#### Netcat as a Proxy
+
+    $ nc -l -v -p 8088 | nc website.com 80
+
+#### Netcat as a simple udp port scanner
+
+    $ nc -v -z -u 192.168.1.100 1-255
 
 ## DEBUG
 
