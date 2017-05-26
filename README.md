@@ -86,7 +86,7 @@ In this way the server remains up even if the client got disconnected.
 
 A far more exciting thing to do is to get a quick shell going on a remote machine by using the `-l` or `listen` option and the `-e` or `execute` option. When a connection is made, Netcat executes the program of your choice and connects the `stdin` and `stdout` of the program to the network connection.
 
-    $ nc -l -p 23 -e /bin/bash
+    $ nc -l -p 23 -e /bin/sh
 
 #### Retrieve a website Homepage
 
@@ -120,7 +120,10 @@ By default all the sockets that nc utility creates are TCP protocols but this ut
 
 #### Netcat as a Proxy
 
-    $ nc -l -v -p 8088 | nc website.com 80
+```sh
+$ mkfifo /tmp/fifo
+$ nc -l -k -p 8080 </tmp/fifo | nc website.com 80 >/tmp/fifo
+```
 
 #### Netcat as a simple udp port scanner
 
