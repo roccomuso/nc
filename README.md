@@ -51,6 +51,7 @@ Available options:
 -T tos               set Type Of Service
 -t                   answer TELNET negotiation
 -u                   UDP mode
+-U                   Listen or connect to a UNIX domain socket
 -v                   verbose
 -w secs              timeout for connects and final net reads (client-side)
 -z                   zero-I/O mode [used for scanning]
@@ -78,7 +79,7 @@ Connection above would be terminated after 10 seconds.
 
 #### Force netcat server to stay up
 
-    $ nc -k -l 2389
+    $ nc -kl 2389
 
 In this way the server remains up even if the client got disconnected.
 
@@ -116,13 +117,21 @@ By default all the sockets that nc utility creates are TCP protocols but this ut
 
 | Server side         | Client side                        |
 |---------------------|------------------------------------|
-| `nc -u -l 2389` | `nc -u localhost 2389` |
+| `nc -ul -p 2389` | `nc -u localhost 2389` |
+
+#### Unix socket file
+
+If you have docker, let's try to list our containers' images connecting to the docker unix socket file:
+
+```sh
+$ echo -e "GET /images/json HTTP/1.0\r\n" | nc -U /var/run/docker.sock
+```
 
 #### Netcat as a Proxy
 
 ```sh
 $ mkfifo /tmp/fifo
-$ nc -l -k -p 8080 </tmp/fifo | nc website.com 80 >/tmp/fifo
+$ nc -lk -p 8080 </tmp/fifo | nc website.com 80 >/tmp/fifo
 ```
 
 #### Netcat as a simple udp port scanner
