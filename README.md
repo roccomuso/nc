@@ -136,7 +136,7 @@ $ nc -lk -p 8080 </tmp/fifo | nc website.com 80 >/tmp/fifo
 
 #### Netcat as a simple udp port scanner
 
-    $ nc -v -z -u 192.168.1.100 1-255
+    $ nc -vzu 192.168.1.100 1-255
 
 ## DEBUG
 
