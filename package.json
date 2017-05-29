@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Porting Netcat in Node.js",
   "main": "index.js",
+  "preferGlobal": true,
+  "bin": {
+    "nc": "./bin/nc.js"
+  },
   "scripts": {
     "test": "standard && nsp check"
   },
@@ -34,6 +38,8 @@
     "standard": "^10.0.2"
   },
   "dependencies": {
-    "debug": "^2.6.6"
+    "debug": "^2.6.6",
+    "netcat": "^0.0.2",
+    "yargs": "^8.0.1"
   }
 }
