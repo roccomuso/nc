@@ -1,4 +1,9 @@
-# nc [![NPM Version](https://img.shields.io/npm/v/nc.svg)](https://www.npmjs.com/package/nc) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+# nc
+
+[![NPM Version](https://img.shields.io/npm/v/nc.svg)](https://www.npmjs.com/package/nc)
+![node](https://img.shields.io/node/v/nc.svg)
+[![Dependency Status](https://david-dm.org/roccomuso/nc.png)](https://david-dm.org/roccomuso/nc)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 Porting Netcat in Node.js. CLI util. :computer:
 
@@ -6,8 +11,13 @@ Porting Netcat in Node.js. CLI util. :computer:
 
 To embed it in your Node.js app use the [netcat](https://github.com/roccomuso/netcat) package instead. This is meant to be used as a standalone tool.
 
+| Linux | Mac OS | Windows |
+|-------|--------|---------|
+| :white_check_mark: | :white_check_mark: | :white_check_mark: |
+
 ## What you can do
 
+- [ ] TCP & UDP
 - [ ] Backdoor (Reverse Shell)
 - [ ] Honeypot
 - [ ] File transfer
@@ -15,12 +25,6 @@ To embed it in your Node.js app use the [netcat](https://github.com/roccomuso/ne
 - [ ] Proxy
 - [ ] Web Server
 - [ ] Port scanning
-
-| OS    |  Supported |
-|-------|--------------------|
-| Linux | :white_check_mark: |
-| Mac OS | :white_check_mark: |
-| Windows | :white_check_mark: |
 
 ## Install
 
