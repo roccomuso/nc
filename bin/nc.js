@@ -52,12 +52,12 @@ if (argv.listen) {
   else nc3.init() // udp
   nc3.pipe(process.stdout) // nc output to stdout
   process.stdin.pipe(nc3.stream()) // attach incoming pipe
-  nc3.on('close', function(){
+  nc3.on('close', function () {
     if (!_common.retry) exit()
   }).on('error', errorExit)
 }
 
-process.stdout.on('error', function(err){
+process.stdout.on('error', function (err) {
   console.log('errore su stdout:', err)
 })
 
