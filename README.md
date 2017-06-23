@@ -7,9 +7,7 @@
 
 Porting Netcat in Node.js. CLI util. :computer:
 
-**Under active development... stay away!**
-
-To embed it in your Node.js app use the [netcat](https://github.com/roccomuso/netcat) package instead. This is meant to be used as a standalone tool.
+To embed it in your Node.js app use the [netcat](https://github.com/roccomuso/netcat) package instead. This is meant to be used as a standalone tool, but it's not fully equal to the original implementation of netcat.
 
 | Linux | Mac OS | Windows |
 |-------|--------|---------|
@@ -17,14 +15,14 @@ To embed it in your Node.js app use the [netcat](https://github.com/roccomuso/ne
 
 ## What you can do
 
-- [ ] TCP & UDP
+- [x] TCP & UDP
 - [ ] Backdoor (Reverse Shell)
-- [ ] Honeypot
-- [ ] File transfer
-- [ ] Port forwarding
+- [x] Honeypot
+- [x] File transfer
+- [x] Port forwarding
 - [ ] Proxy
-- [ ] Web Server
-- [ ] Port scanning
+- [x] Web Server & HTTP Client
+- [x] Port scanning
 
 ## Install
 
@@ -40,8 +38,6 @@ Available options:
 -c shell commands    as `-e’; use /bin/sh to exec [dangerous!!]
 -e filename          program to exec after connect [dangerous!!]
 -b                   allow broadcasts
--g gateway           source-routing hop point[s], up to 8
--G num               source-routing pointer: 4, 8, 12
 -h                   this cruft
 -i secs              delay interval for lines sent, ports scanned
 -k set               keepalive option on socket
@@ -50,10 +46,7 @@ Available options:
 -o file              hex dump of traffic
 -p port              local port number
 -r                   randomize local and remote ports
--q secs              quit after EOF on stdin and delay of secs
 -s addr              local source address
--T tos               set Type Of Service
--t                   answer TELNET negotiation
 -u                   UDP mode
 -U                   Listen or connect to a UNIX domain socket
 -v                   verbose
@@ -68,6 +61,8 @@ Available options:
 #### Client mode
 
     $ nc localhost 2389
+
+Opening a raw connection to port `2389`.
 
 #### Transfer file
 
@@ -109,19 +104,12 @@ To use Netcat to retrieve the home page of a web site use:
 
 You will see Netcat make a connection to port 80, send the text contained in the file `get.txt`, and then output the web server's response to `stdout`.
 
-#### Configure netcat client to stay up after EOF
+#### Configure netcat client to retry on disconnect
 
-In a normal scenario, if the nc client receives an EOF character then it terminates immediately but this behavior can also be controlled if the -q flag is used. This flag expects a number which depicts number of seconds to wait before client terminates (after receiving EOF).
+In a normal scenario, if the nc client disconnect, it will not retry the connection.
+With the `--retry <secs>` or `-R <secs>` param, it will retry the connection after tot seconds.
 
-    $ nc -q 5 localhost 2389
-
-#### UDP Protocol
-
-By default all the sockets that nc utility creates are TCP protocols but this utility also works with UDP protocol. To enable UDP protocol the -u flag is used.
-
-| Server side         | Client side                        |
-|---------------------|------------------------------------|
-| `nc -ul -p 2389` | `nc -u localhost 2389` |
+    $ nc -R 5 localhost 2389
 
 #### Unix socket file
 
@@ -131,25 +119,44 @@ If you have docker, let's try to list our containers' images connecting to the d
 $ echo -e "GET /images/json HTTP/1.0\r\n" | nc -U /var/run/docker.sock
 ```
 
+PS. for this example root permissions are required: `sudo su`.
+
 #### Netcat as a Proxy
 
 ```sh
 $ mkfifo /tmp/fifo
-$ nc -lk -p 8080 </tmp/fifo | nc website.com 80 >/tmp/fifo
+$ nc -l -k -p 8080 </tmp/fifo | nc website.com 80 >/tmp/fifo
 ```
 
-#### Netcat as a simple udp port scanner
+#### Netcat as a simple port scanner
 
-    $ nc -vzu 192.168.1.100 1-255
+    $ nc -z 192.168.1.100 1-255
+
+#### Dump hex traffic
+
+If you use the `-o` option you can dump all hex traffic.
+
+    $ nc 127.0.0.1 4445 -o /tmp/log.txt
+
+#### UDP Protocol
+
+By default all the sockets that nc utility creates are TCP protocols but this utility also works with UDP protocol. To enable UDP protocol the -u flag is used.
+
+| Server side         | Client side                        |
+|---------------------|------------------------------------|
+| `nc -u -l -p 2389` | `nc -u localhost 2389` |
+
+#### Send a UDP message
+
+    $ echo 'message' | nc -w 1 -u 192.168.1.111 514
+
+Pipe via UDP (-u) with a wait time (-w) of 1 second to `192.168.1.111` on port `514`.
 
 ## DEBUG
 
 Debug matches the verbose mode.
-You can enable it with the `-v` param or the env var `DEBUG=nc:*`
+You can enable it with the `-v` param or the env var `DEBUG=nc`. This module uses the node implementation of [netcat](https://github.com/roccomuso/netcat) under the hood, to debug both use: `DEBUG=netcat:*,nc`.
 
-## Known limitations
-
-None
 
 ## Author
 
