@@ -16,7 +16,7 @@ To embed it in your Node.js app use the [netcat](https://github.com/roccomuso/ne
 ## What you can do
 
 - [x] TCP & UDP
-- [ ] Backdoor (Reverse Shell)
+- [x] Backdoor (Reverse Shell)
 - [x] Honeypot
 - [x] File transfer
 - [x] Port forwarding
