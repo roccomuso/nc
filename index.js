@@ -1,1 +1,1 @@
-nodule.exports = require('./bin/nc')
+module.exports = require('./bin/nc')
