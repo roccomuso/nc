@@ -48,7 +48,7 @@ if (argv.listen) {
   _common.interval = argv.interval
   _common.retry = argv.retry ? (argv.retry * 1000) : null
   var nc3 = new NetcatClient(_common)
-  if (argv.protocol === 'tcp') nc3.connect()
+  if (_common.protocol === 'tcp') nc3.connect()
   else nc3.init() // udp
   nc3.pipe(process.stdout) // nc output to stdout
   process.stdin.pipe(nc3.stream()) // attach incoming pipe
