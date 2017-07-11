@@ -1,6 +1,6 @@
 {
   "name": "nc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Porting Netcat in Node.js",
   "main": "index.js",
   "preferGlobal": true,
