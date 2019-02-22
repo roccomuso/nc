@@ -31,7 +31,7 @@
     "pipe"
   ],
   "author": "Rocco Musolino (roccomuso)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/roccomuso/nc/issues"
   },
