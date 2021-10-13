@@ -10,7 +10,7 @@ const argv = require('../lib/argvHandler.js')
 
 debug('Got argv:', argv)
 
-var _common = {
+const _common = {
   address: argv.address,
   port: argv.port,
   keepalive: argv.keepalive,
@@ -25,7 +25,7 @@ var _common = {
 if (argv.listen) {
   // server
   debug('Starting netcat server.')
-  var nc = new NetcatServer(_common)
+  const nc = new NetcatServer(_common)
   nc.listen()
     .serve(process.stdin) // attach incoming pipe
     .pipe(process.stdout) // nc output to stdout
@@ -35,9 +35,9 @@ if (argv.listen) {
   // port scanner
   debug('Starting port scanner.')
   if (!argv.port) exit('Port/s required', 1)
-  var nc2 = new NetcatClient(_common)
+  const nc2 = new NetcatClient(_common)
   nc2.scan(argv.port, function (out) {
-    for (var i in out) {
+    for (const i in out) {
       console.log(i, '\t', out[i])
     }
   }).on('error', errorExit)
@@ -47,7 +47,7 @@ if (argv.listen) {
   _common.timeout = argv.timeout
   _common.interval = argv.interval
   _common.retry = argv.retry ? (argv.retry * 1000) : null
-  var nc3 = new NetcatClient(_common)
+  const nc3 = new NetcatClient(_common)
   if (_common.protocol === 'tcp') nc3.connect()
   else nc3.init() // udp
   nc3.pipe(process.stdout) // nc output to stdout
