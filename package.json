@@ -11,7 +11,7 @@
     "test": "standard"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=12.0.0"
   },
   "repository": {
     "type": "git",
@@ -37,11 +37,11 @@
   },
   "homepage": "https://github.com/roccomuso/nc#readme",
   "devDependencies": {
-    "standard": "^10.0.2"
+    "standard": "^16.0.4"
   },
   "dependencies": {
     "debug": "^4.1.1",
     "netcat": "^1.4.0",
-    "yargs": "^8.0.1"
+    "yargs": "^17.2.1"
   }
 }
